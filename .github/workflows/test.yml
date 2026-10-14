@@ -1,0 +1,23 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: 10.0.x
+    - name: Install dependencies
+      run: dotnet restore Leash.slnx
+    - name: Build
+      run: dotnet build Leash.slnx --configuration Release --no-restore
+    - name: Test
+      run: dotnet test --solution Leash.slnx --configuration Release --no-build --no-restore --verbosity normal

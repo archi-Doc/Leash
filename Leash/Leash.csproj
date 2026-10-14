@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsRoslynComponent>true</IsRoslynComponent>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IsPackable>true</IsPackable>
+    <PackageId>Leash</PackageId>
+    <Description>Syntax-based C# implementation size and parameter limits.</Description>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/archi-Doc/Leash</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/archi-Doc/Leash</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>analyzer;roslyn;code-quality;maintainability</PackageTags>
+    <!-- Analyzer release tracking (AnalyzerReleases.*.md) is not used; the rules are defined in SPEC.md and verified by tests. -->
+    <NoWarn>$(NoWarn);RS2008</NoWarn>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <AdditionalFiles Include="..\stylecop.json" Link="Build\stylecop.json" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.9.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="5.9.0" PrivateAssets="all" />
+    <InternalsVisibleTo Include="xUnitTest" />
+    <InternalsVisibleTo Include="Benchmark" />
+    <None Include="$(OutputPath)$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="../README.md" Link="Documentation\README.md" Pack="true" PackagePath="/" />
+    <None Include="../SPEC.md" Link="Documentation\SPEC.md" Pack="true" PackagePath="/" />
+    <None Include="../docs/*.md" Link="Documentation\%(Filename)%(Extension)" Pack="true" PackagePath="docs/" />
+  </ItemGroup>
+
+  <!-- Group project items in Solution Explorer without changing their disk or package paths. -->
+  <ItemGroup>
+    <Compile Update="AnalysisEngine.cs;AnalyzerSettings.cs;DiagnosticRules.cs;DiagnosticSink.cs;Exemptions.cs;Measurement.cs;SyntaxInfo.cs" Link="Internal\%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

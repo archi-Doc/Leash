@@ -1,0 +1,11 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Benchmark/Benchmark.csproj" />
+  <Project Path="Leash/Leash.csproj" />
+  <Project Path="Playground/Playground.csproj" Id="1713f6a4-bd6d-4d28-9d4e-d842d5f4ba50" />
+  <Project Path="xUnitTest/xUnitTest.csproj" />
+</Solution>
