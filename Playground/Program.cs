@@ -1,10 +1,8 @@
-﻿using Leash;
-
-namespace Playground;
+﻿namespace Playground;
 
 internal class Program
 {
-    [LeashExempt("aa")]
+    [Leash.Exempt("aa")]
     static void Main(string[] args)
     {
         Console.WriteLine("Hello, World!");

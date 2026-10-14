@@ -171,15 +171,15 @@ Generated-code declarations and configuration are subject to review.
 The only supported code-level exemption is a reasoned attribute:
 
 ```csharp
-[LeashExempt("External contract requires this signature.")]
+[Leash.Exempt("External contract requires this signature.")]
 public void Execute(int a, int b, int c, int d, int e, int f, int g)
 {
 }
 ```
 
-The package's source generator adds the attribute type `Leash.LeashExemptAttribute` to each consuming compilation. It is internal, carries `Microsoft.CodeAnalysis.EmbeddedAttribute` so that copies in different assemblies do not conflict, is conditional so that its usages are not emitted to metadata, and permits methods, constructors, properties, fields, events, and delegates as C# attribute targets. A project can define its own attribute with a recognized name instead. In either case the analyzer matches the written name, not the resolved type, and the generated source is generated code that is not analyzed:
+The package's source generator adds the attribute type `Leash.ExemptAttribute` to each consuming compilation. It is internal, carries `Microsoft.CodeAnalysis.EmbeddedAttribute` so that copies in different assemblies do not conflict, is conditional so that its usages are not emitted to metadata, and permits methods, constructors, properties, fields, events, and delegates as C# attribute targets. A project can define its own attribute with a recognized name instead. In either case the analyzer matches the written name, not the resolved type, and the generated source is generated code that is not analyzed:
 
-- Accept a final identifier of `LeashExempt` or `LeashExemptAttribute`, including qualified and generic names. Do not resolve aliases. A different alias name is not recognized; a matching written name is recognized regardless of what it resolves to.
+- Accept a final identifier of `Exempt` or `ExemptAttribute`, including qualified and generic names. Do not resolve aliases. A different alias name is not recognized; a matching written name is recognized regardless of what it resolves to.
 - Require exactly one positional argument: a string literal whose decoded value is not empty or whitespace-only. Ordinary, verbatim, and raw string literals are accepted. Interpolated strings, UTF-8 byte-string literals, constant names, concatenations, and named arguments are not accepted.
 - Apply the exemption to the associated declared function, field, property, indexer, or delegate. A field declaration applies to all its declarators. A property or indexer exemption also covers its accessors and initializer, where present.
 - A `method:` attribute on a type with an explicit primary constructor applies only to that constructor. This is an attribute on the constructor, not a type-wide exemption; see [C# primary constructor attributes](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).

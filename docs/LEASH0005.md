@@ -3,13 +3,11 @@
 Use the attribute that the package generates in the `Leash` namespace, or a project-defined attribute with the same name, with a non-blank string literal reason:
 
 ```csharp
-using Leash;
-
-[LeashExempt("External contract requires this signature.")]
+[Leash.Exempt("External contract requires this signature.")]
 public void Execute(int a, int b, int c, int d, int e, int f, int g) { }
 ```
 
-Match the final written identifier `LeashExempt` or `LeashExemptAttribute`. Qualified and generic names are matched by that identifier; aliases are not resolved. Require exactly one positional ordinary, verbatim, or raw string literal. Constants, interpolations, concatenations, named arguments, UTF-8 literals, and empty or whitespace-only reasons are invalid.
+Match the final written identifier `Exempt` or `ExemptAttribute`. Qualified and generic names are matched by that identifier; aliases are not resolved. Require exactly one positional ordinary, verbatim, or raw string literal. Constants, interpolations, concatenations, named arguments, UTF-8 literals, and empty or whitespace-only reasons are invalid.
 
 Functions (including supported attributed lambdas and individual accessors), fields, properties, indexers, and delegates can be exempted. A field exemption covers its declarators. A property or indexer exemption covers its accessors and initializer. A `method:` attribute on a type with a primary constructor applies only to that constructor. Whole types, assemblies, modules, parameters, and return values cannot be exempted.
 
