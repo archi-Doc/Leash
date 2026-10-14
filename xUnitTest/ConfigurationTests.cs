@@ -75,7 +75,7 @@ public sealed class ConfigurationTests
     [Fact]
     public async Task InvalidBooleanDoesNotGrantExemptionsOrDisableOtherChecks()
     {
-        var diagnostics = await AnalyzerTest.Run("class C { [LeashExempt(\"reason\")] void M(int x) {} }",
+        var diagnostics = await AnalyzerTest.Run("class C { [Exempt(\"reason\")] void M(int x) {} }",
             AnalyzerTest.Options(("allow_exempt", "bad"), ("max_parameters", "0")));
         Assert.Equal(new[] { "LEASH0004", "LEASH0002" }, diagnostics.Select(d => d.Id));
     }

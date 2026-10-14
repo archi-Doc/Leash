@@ -5,13 +5,13 @@ using Microsoft.CodeAnalysis;
 namespace Leash;
 
 /// <summary>
-/// Adds <c>Leash.LeashExemptAttribute</c> to each consuming compilation, so that reasoned exemptions
+/// Adds <c>Leash.ExemptAttribute</c> to each consuming compilation, so that reasoned exemptions
 /// need no project-defined attribute.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
 public sealed class ExemptAttributeGenerator : IIncrementalGenerator
 {
-    internal const string HintName = "LeashExemptAttribute.g.cs";
+    internal const string HintName = "ExemptAttribute.g.cs";
 
     // Written for C# 7.3 so that every consuming language version accepts it. The type is internal and embedded,
     // so assemblies that each receive a copy never see one another's, and the conditional attribute keeps usages
@@ -30,13 +30,13 @@ public sealed class ExemptAttributeGenerator : IIncrementalGenerator
                 global::System.AttributeTargets.Property | global::System.AttributeTargets.Field |
                 global::System.AttributeTargets.Event | global::System.AttributeTargets.Delegate,
                 Inherited = false)]
-            internal sealed class LeashExemptAttribute : global::System.Attribute
+            internal sealed class ExemptAttribute : global::System.Attribute
             {
                 /// <summary>
-                /// Initializes a new instance of the <see cref="LeashExemptAttribute"/> class.
+                /// Initializes a new instance of the <see cref="ExemptAttribute"/> class.
                 /// </summary>
                 /// <param name="reason">A non-blank string literal that explains why the exemption is necessary.</param>
-                public LeashExemptAttribute(string reason)
+                public ExemptAttribute(string reason)
                 {
                     this.Reason = reason;
                 }

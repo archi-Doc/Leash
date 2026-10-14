@@ -22,7 +22,7 @@ internal static class Exemptions
             AliasQualifiedNameSyntax name => name.Name.Identifier.ValueText,
             _ => string.Empty,
         };
-        if (identifier != "LeashExempt" && identifier != "LeashExemptAttribute")
+        if (identifier != "Exempt" && identifier != "ExemptAttribute")
         {
             return 0;
         }
